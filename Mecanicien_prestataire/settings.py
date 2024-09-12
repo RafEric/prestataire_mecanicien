@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'Mecanicien_prestataire.wsgi.application'
 
 DATABASES = {
     'default': {
-        'default': dj_database_url.config(default=config('DATABASE_URL'))
+           'default': dj_database_url.config(default=config('DATABASE_URL'))
     }
 }
 
