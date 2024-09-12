@@ -66,10 +66,10 @@
             <a class="nav-link" aria-current="page" href="{% url 'index' %}">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'service' %}">Services</a>
+          <a class="nav-link" href="">Services</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'mecaniciens_proches' %}">À Propos</a>
+          <a class="nav-link" href="">À Propos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Contact</a>
@@ -89,13 +89,13 @@
         </li>
        {% if user.is_authenticated%}
                 {% if request.user.profile.user_type == 'Client' %}
-                    <li><a href="{% url 'client:dashboard' %}">Mon Tableau de Bord</a></li>
+                    <li><a href="">Mon Tableau de Bord</a></li>
                 {% endif %}
-            <a class="btn btn-logout"  href="{% url 'authentification:signout' %}" >deconnecter</a>
+            <a class="btn btn-logout"  href="" >deconnecter</a>
           {% else %}
-          <a class="btn btn-outline-light"  href="{% url 'authentification:signup' %}"  >inscription</a>
+          <a class="btn btn-outline-light"  href=""  >inscription</a>
           
-          <a class="btn btn-login"   href="{% url 'authentification:signin' %}" >Connexion</a>
+          <a class="btn btn-login"   href="" >Connexion</a>
           {% endif %}
           
       </ul>

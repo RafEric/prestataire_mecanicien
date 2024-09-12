@@ -23,10 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', acceuil , name ="index"),
     path('service', service , name ="service"),
-    path('mecaniciens_proches/', mecaniciens_proches, name='mecaniciens_proches'),
-    path('authentification/', include('authentification.urls')),
-    path('admin_app/', include('admin_app.urls')),
-    path('prestataire_app/', include('prestataire_app.urls')),
+   # path('mecaniciens_proches/', mecaniciens_proches, name='mecaniciens_proches'),
+   # path('authentification/', include('authentification.urls')),
+   # path('admin_app/', include('admin_app.urls')),
+   # path('prestataire_app/', include('prestataire_app.urls')),
   
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
