@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
+import dj_database_url
 from . info import *
 import os
 import django
@@ -36,8 +38,12 @@ SECRET_KEY = 'django-insecure-xd2k=8&$!syz@v06l+q9xu+skx3$01bydkqs*+e282x%9!a*_a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+
+
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # Application definition
 
@@ -89,12 +95,7 @@ WSGI_APPLICATION = 'Mecanicien_prestataire.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'authentification',
-        'USER': 'postgres',
-        'PASSWORD': 'santatra-18',
-        'HOST': 'localhost',
-        'PORT': '5432',
+         'default': dj_database_url.config(conn_max_age=600)
     }
 }
 
