@@ -94,11 +94,16 @@ WSGI_APPLICATION = 'Mecanicien_prestataire.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL'),
-        engine='django.db.backends.postgresql'
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'authentification',
+        'USER': 'postgres',
+        'PASSWORD': 'santatra-18',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 # Password validation

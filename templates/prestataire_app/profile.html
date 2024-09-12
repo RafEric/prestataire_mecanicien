@@ -1,0 +1,203 @@
+<!-- profile.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil du Mécanicien</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/styleb.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .profile-header {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #343a40;
+            color: #fff;
+        }
+        .profile-header img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            border: 4px solid #fff;
+        }
+        .profile-header h1 {
+            font-size: 26px;
+            margin: 10px 0;
+        }
+        .profile-header p {
+            color: #ced4da;
+        }
+        .sidebar {
+            padding: 30px 0;
+            background-color: #343a40;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            overflow-y: auto;
+            transition: all 0.3s;
+        }
+        .sidebar .nav-link {
+            color: #adb5bd;
+            font-size: 18px;
+            padding: 15px;
+        }
+        .sidebar .nav-link.active, .sidebar .nav-link:hover {
+            color: #fff;
+            background-color: #495057;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 30px;
+        }
+        .bio-graph-heading {
+            background: #6c757d;
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .bio-graph-info h1 {
+            font-size: 24px;
+            margin: 0 0 20px;
+        }
+        .bio-row {
+            margin-bottom: 10px;
+        }
+        .bio-row p span {
+            font-weight: 600;
+            color: #495057;
+        }
+        .panel {
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .panel .panel-body {
+            padding: 20px;
+        }
+        .dashboard-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            padding: 20px;
+            text-align: center;
+        }
+        .dashboard-card h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .dashboard-card p {
+            font-size: 16px;
+            color: #6c757d;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .content {
+                margin-left: 0;
+            }
+            .profile-header {
+                padding: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile-header">
+            <img src="{{ profile.photo_profil.url }}" >
+            <h1>{{ profile.user.first_name }} {{ profile.user.last_name }}</h1>
+            <p>{{ profile.user.email }}</p>
+        </div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fas fa-user"></i> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-calendar"></i> Activité récente <span class="badge bg-warning text-dark">9</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-edit"></i> Modifier profil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'authentification:signout'%}"><i class="fas fa-edit"></i> deconnecter</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="bio-graph-heading">
+            Expert en réparation et maintenance de véhicules, offrant des services de qualité avec plus de 10 ans d'expérience.
+        </div>
+        <div class="panel bio-graph-info">
+            <div class="panel-body">
+                <h1>Biographie</h1>
+                <div class="row">
+                    <div class="bio-row col-md-6">
+                        <p><span>Prénom </span>: {{ profile.user.first_name }}</p>
+                    </div>
+                    <div class="bio-row col-md-6">
+                        <p><span>Nom </span>: {{ profile.user.last_name }}</p>
+                    </div>
+                    <div class="bio-row col-md-6">
+                        <p><span>Pays </span>: {{ profile.country }}</p>
+                    </div>
+                    <div class="bio-row col-md-6">
+                        <p><span>Date de naissance</span>: {{ profile.birth_date }}</p>
+                    </div>
+                    <div class="bio-row col-md-6">
+                        <p><span>Occupation </span>: Mécanicien</p>
+                    </div>
+                    <div class="bio-row col-md-6">
+                        <p><span>Email </span>: {{ profile.user.email }}</p>
+                    </div>
+                    <div class="bio-row col-md-6">
+                        <p><span>Téléphone </span>: {{ profile.user.phone }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="dashboard-card">
+                    <h4 class="text-primary">Réparations Récentes</h4>
+                    <p>Début : 15 Juillet</p>
+                    <p>Date limite : 15 Août</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dashboard-card">
+                    <h4 class="text-success">Entretien régulier</h4>
+                    <p>Début : 15 Juillet</p>
+                    <p>Date limite : 15 Août</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dashboard-card">
+                    <h4 class="text-warning">Services d'urgence</h4>
+                    <p>Début : 15 Juillet</p>
+                    <p>Date limite : 15 Août</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dashboard-card">
+                    <h4 class="text-danger">Consultations</h4>
+                    <p>Début : 15 Juillet</p>
+                    <p>Date limite : 15 Août</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

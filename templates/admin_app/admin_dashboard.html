@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Admin Dashboard</h1>
+        <h2>Prestataires en attente d'approbation</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Service</th>
+                    <th>Spécialité</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for provider in pending_providers %}
+                <tr>
+                    <td>{{ provider.user.get_full_name }}</td>
+                    <td>{{ provider.user.email }}</td>
+                    <td>{{ provider.service }}</td>
+                    <td>{{ provider.speciality }}</td>
+                    <td>
+                        <a href="{% url 'approve_provider' provider.id %}" class="btn btn-success">Approuver</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+

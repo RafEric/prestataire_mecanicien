@@ -1,0 +1,177 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"> 
+
+    <title>{% block title %}Mécanicien Pro{% endblock %}</title>
+
+    
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Mécanicien Pro</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{% url 'index' %}">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'service' %}">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'mecaniciens_proches' %}">À Propos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+          
+          {% if user.is_authenticated%}
+                {% if request.user.profile.user_type == 'Client' %}
+                    <li><a href="{% url 'client:dashboard' %}">Mon Tableau de Bord</a></li>
+                {% endif %}
+            <a class="btn btn-outline-light"  href="{% url 'authentification:signout' %}" >deconnecter</a>
+          {% else %}
+          <a class="btn btn-outline-light"  href="{% url 'authentification:signup' %}"  >inscription</a>
+          
+          <a class="btn btn-login"   href="{% url 'authentification:signin' %}" >Connexion</a>
+          {% endif %}
+          
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container mt-5 pt-4">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script>
+    $(document).ready(function() {
+        $('#openRegistrationModal').click(function(e) {
+            e.preventDefault();
+            $('#registrationModal').modal('show');
+        });
+
+        function validateStep1() {
+            let isValid = true;
+            $('#step1 input[required]').each(function() {
+                if (!this.value.trim()) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+            return isValid;
+        }
+
+        $('#next1').click(function() {
+            if (validateStep1()) {
+                $('#step1').fadeOut(500, function() {
+                    $('#step2').fadeIn(500).addClass('active');
+                    $(this).removeClass('active');
+                });
+            }
+        });
+
+        $('#prev1').click(function() {
+            $('#step2').fadeOut(500, function() {
+                $('#step1').fadeIn(500).addClass('active');
+                $(this).removeClass('active');
+            });
+        });
+
+        function validateStep2() {
+            let isValid = true;
+            $('#step2 input[required]').each(function() {
+                if (!this.value.trim()) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+            return isValid;
+        }
+
+        $('#next2').click(function() {
+            if (validateStep2()) {
+                $('#step2').fadeOut(500, function() {
+                    $('#step3').fadeIn(500).addClass('active');
+                    $(this).removeClass('active');
+                });
+            }
+        });
+
+        $('#prev2').click(function() {
+            $('#step3').fadeOut(500, function() {
+                $('#step2').fadeIn(500).addClass('active');
+                $(this).removeClass('active');
+            });
+        });
+
+        function togglePrestataireFields() {
+            if ($('#user_type').val() === 'prestataire') {
+                $('#prestataire_fields').slideDown();
+            } else {
+                $('#prestataire_fields').slideUp();
+            }
+        }
+
+        togglePrestataireFields();
+
+        $('#user_type').change(function() {
+            togglePrestataireFields();
+        });
+    });
+
+</script>
+    {% if messages %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var errorModal = new bootstrap.Modal(document.getElementById('registrationModal'), {});
+        errorModal.show();
+    });
+</script>
+{% endif %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        {% if show_popup or messages %}
+            var registrationModal = new bootstrap.Modal(document.getElementById('registrationModal'));
+            registrationModal.show();
+        {% endif %}
+    });
+</script>
+<script>
+  {% if messages %}
+                    alertify.set('notifier','position','top-right');
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                  
+                {% endif %}
+                      </script>
+ 
+  </body>
+</html>

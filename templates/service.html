@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Services</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        .service-card {
+            transition: transform 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: scale(1.05);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .testimonial {
+            font-style: italic;
+            color: #6c757d;
+        }
+
+        .cta-button {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4">Nos Services</h1>
+        <p class="lead">Découvrez une gamme complète de services de mécanique auto adaptés à vos besoins</p>
+    </div>
+</header>
+
+<!-- Services Section -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="section-header">Services Offerts</h2>
+        <div class="row">
+            <!-- Service 1 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card p-4 text-center bg-light">
+                    <div class="service-icon mx-auto mb-3">
+                        <i class="bi bi-tools"></i>
+                    </div>
+                    <h4>Révision Complète</h4>
+                    <p>Entretien général de votre véhicule pour garantir sa performance.</p>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card p-4 text-center bg-light">
+                    <div class="service-icon mx-auto mb-3">
+                        <i class="bi bi-gear"></i>
+                    </div>
+                    <h4>Changement de Pneus</h4>
+                    <p>Service rapide et efficace pour le montage et équilibrage de vos pneus.</p>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card p-4 text-center bg-light">
+                    <div class="service-icon mx-auto mb-3">
+                        <i class="bi bi-battery"></i>
+                    </div>
+                    <h4>Diagnostic Moteur</h4>
+                    <p>Détection rapide des problèmes moteurs grâce à nos outils de diagnostic.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-5">
+            <a href="#" class="cta-button">Trouver un Mécanicien</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="section-header">Témoignages Clients</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <blockquote class="blockquote text-center testimonial">
+                    "Excellent service, mon véhicule a été réparé rapidement et efficacement."
+                    <footer class="blockquote-footer">Jean Dupont</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote text-center testimonial">
+                    "Je recommande vivement ces mécaniciens pour leur professionnalisme."
+                    <footer class="blockquote-footer">Marie Lefebvre</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote text-center testimonial">
+                    "Une équipe compétente et des prix très compétitifs, très satisfait !"
+                    <footer class="blockquote-footer">Pierre Martin</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+        <p>&copy; 2024 VotreSite. Tous droits réservés.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

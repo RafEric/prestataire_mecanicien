@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/find_mechanic.css' %}">
+
+<style>
+    .search-page {
+        padding: 2rem;
+    }
+    .search-form {
+        margin-bottom: 2rem;
+    }
+    .results {
+        margin-top: 2rem;
+    }
+    .mechanic-card {
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #f9f9f9;
+    }
+    .mechanic-card img {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+    .mechanic-card h5 {
+        margin-bottom: 0.5rem;
+    }
+    .mechanic-card .details {
+        flex: 1;
+    }
+</style>
+
+<div class="search-page">
+    <h5>Trouver un mécanicien</h5>
+<form method="GET" action="{% url 'mecanicien' %}" class="search-form">
+        <div class="mb-3">
+            <label for="service" class="form-label">Service</label>
+            <select class="form-control" id="service" name="service">
+                <option value="">Tous</option>
+                <option value="diagnostique">Diagnostique</option>
+                <option value="reparation_general">Réparation générale</option>
+                <option value="entretien_regulier">Entretien régulier</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="speciality" class="form-label">Spécialité</label>
+            <select class="form-control" id="speciality" name="speciality">
+                <option value="">Tous</option>
+                <option value="diesel">Diesel</option>
+                <option value="essence">Essence</option>
+                <option value="both">Les deux</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="is_available" class="form-label">Disponible</label>
+            <input type="checkbox" id="is_available" name="is_available">
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Localisation</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="Entrez votre localisation">
+        </div>
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+
+    <div class="results">
+        {% if mechanics %}
+            {% for mechanic in mechanics %}
+                <div class="mechanic-card">
+                    {% if mechanic.photo_profil %}
+                        <img src="{{ mechanic.photo_profil.url }}" alt="Photo de {{ mechanic.username }}">
+                    {% else %}
+                        <img src="{% static 'imageS/default_profile.png' %}" alt="Photo de {{ mechanic.username }}">
+                    {% endif %}
+                    <div class="details">
+                        <h5>{{ mechanic.username }}</h5>
+                        <p><strong>Service:</strong> {{ mechanic.service }}</p>
+                        <p><strong>Spécialité:</strong> {{ mechanic.speciality }}</p>
+                        <p><strong>Numéro de téléphone:</strong> {{ mechanic.phone }}</p>
+                        <p><strong>Disponibilité:</strong> {% if mechanic.is_available %}Disponible{% else %}Non disponible{% endif %}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Aucun mécanicien trouvé.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

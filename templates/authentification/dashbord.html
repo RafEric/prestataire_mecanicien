@@ -1,0 +1,126 @@
+{% extends 'base.html'%}
+
+{% block content%}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 sidebar p-3">
+            <div class="d-flex flex-column align-items-center">
+                <h3 class="text-white mb-3">MécanoConnect</h3>
+                <div class="list-group w-100">
+                    <a href="#dashboard" class="list-group-item list-group-item-action active">Tableau de Bord</a>
+                    <a href="#services" class="list-group-item list-group-item-action">Historique des Services</a>
+                    <a href="#favorites" class="list-group-item list-group-item-action">Mécaniciens Favoris</a>
+                    <a href="#reviews" class="list-group-item list-group-item-action">Avis et Évaluations</a>
+                    <a href="#profile" class="list-group-item list-group-item-action">Profil</a>
+                    <a href="#support" class="list-group-item list-group-item-action">Support</a>
+                    <a href="#payments" class="list-group-item list-group-item-action">Paiements</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9 p-4">
+            <!-- Dashboard Overview -->
+            <div id="dashboard" class="card mb-4">
+                <div class="card-header">Tableau de Bord</div>
+                <div class="card-body">
+                    <h5>Bienvenue, [Nom du Client]!</h5>
+                    <p>Voici un résumé de vos activités récentes.</p>
+                    <!-- Insert summary widgets or cards here -->
+                </div>
+            </div>
+
+            <!-- Service History -->
+            <div id="services" class="card mb-4">
+                <div class="card-header">Historique des Services</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Service 1 - <span class="text-muted">Statut: Terminé</span></li>
+                        <li class="list-group-item">Service 2 - <span class="text-muted">Statut: En cours</span></li>
+                        <!-- More service history items -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Favorites -->
+            <div id="favorites" class="card mb-4">
+                <div class="card-header">Mécaniciens Favoris</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex align-items-center">
+                            <img src="mechanic1.jpg" class="profile-image me-3" alt="Mécanicien 1">
+                            <div>
+                                <strong>Mécanicien 1</strong><br>
+                                Spécialité : Réparation générale<br>
+                                Téléphone : 0123456789
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex align-items-center">
+                            <img src="mechanic2.jpg" class="profile-image me-3" alt="Mécanicien 2">
+                            <div>
+                                <strong>Mécanicien 2</strong><br>
+                                Spécialité : Électricité auto<br>
+                                Téléphone : 0123456789
+                            </div>
+                        </li>
+                        <!-- More favorite mechanics -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Reviews -->
+            <div id="reviews" class="card mb-4">
+                <div class="card-header">Avis et Évaluations</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Avis pour Mécanicien 1 - <span class="text-muted">5 étoiles</span></li>
+                        <li class="list-group-item">Avis pour Mécanicien 2 - <span class="text-muted">4 étoiles</span></li>
+                        <!-- More reviews -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Profile -->
+            <div id="profile" class="card mb-4">
+                <div class="card-header">Profil</div>
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="name" value="[Nom du Client]">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" value="[Email du Client]">
+                        </div>
+                        <!-- Additional profile fields -->
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div id="support" class="card mb-4">
+                <div class="card-header">Support</div>
+                <div class="card-body">
+                    <p>Si vous avez des questions, veuillez consulter notre <a href="faq.html">FAQ</a> ou <a href="contact.html">nous contacter</a>.</p>
+                </div>
+            </div>
+
+            <!-- Payments -->
+            <div id="payments" class="card mb-4">
+                <div class="card-header">Paiements</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">Paiement pour Service 1 - <span class="text-muted">50€</span></li>
+                        <li class="list-group-item">Paiement pour Service 2 - <span class="text-muted">75€</span></li>
+                        <!-- More payment history items -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

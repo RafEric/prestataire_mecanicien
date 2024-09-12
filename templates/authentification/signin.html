@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/formulaire.css'}">
+{% endblock %}
+{% block content %}
+{% for message in messages %}
+    <strong><i style="color: green;">{{message}}</i></strong>
+{% endfor %}    
+<br><br>
+<h2>Login Here</h2>
+<div class="container mt-5">
+        <h2>Connexion</h2>
+       <form method="post" > 
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Nom d'utilisateur</label>
+                <input type="text" class="form-control" id="username" name="username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+        </form>
+    </div>
+{% endblock %}

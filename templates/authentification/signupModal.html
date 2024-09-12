@@ -1,0 +1,166 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/formulaire.css' %}">
+<style>
+    .step {
+        display: none;
+    }
+    .step.active {
+        display: block;
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 0.5s;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+</style>
+    <!-- Modal -->
+    <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registrationModalLabel">Inscription</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulaire d'inscription -->
+                    <form id="registrationForm" method="POST" novalidate>
+                        {% csrf_token %}
+                        
+                        <!-- Étape 1 -->
+                        <div class="step active" id="step1">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Nom d'utilisateur</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="first_name" class="form-label">Prénom</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="last_name" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Numéro de téléphone</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sexe" class="form-label">Sexe</label>
+                                    <select class="form-control" id="sexe" name="sexe" required>
+                                        <option value="M" {% if profil.sexe == 'M' %}selected{% endif %}>Masculin</option>
+                                        <option value="F" {% if profil.sexe == 'F' %}selected{% endif %}>Féminin</option>
+                                    </select>
+                            </div>
+                            <button type="button" class="btn btn-primary w-100" id="next1">Suivant</button>
+                        </div>
+                        
+                        <!-- Étape 2 -->
+                        <div class="step" id="step2">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="user_type" class="form-label">Type d'utilisateur</label>
+                                <select class="form-control" id="user_type" name="user_type" required>
+                                    <option value="client">Client</option>
+                                    <option value="prestataire">Prestataire</option>
+                                </select>
+                            </div>
+                            <div id="prestataire_fields" style="display: none;">
+                                <div class="mb-3">
+                                    <label for="service" class="form-label">Service</label>
+                                    <select class="form-control" id="service" name="service">
+                                        <option value="diagnostique">Diagnostique</option>
+                                        <option value="reparation_general">Réparation générale</option>
+                                        <option value="entretien_regulier">Entretien régulier</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="speciality" class="form-label">Spécialité</label>
+                                    <select class="form-control" id="speciality" name="speciality">
+                                        <option value="diesel">Diesel</option>
+                                        <option value="essence">Essence</option>
+                                        <option value="both">Les deux</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-secondary w-100 mt-3" id="prev1">Précédent</button>
+                            <button type="submit" class="btn btn-primary w-100 mt-3">S'inscrire</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Ouvrir la fenêtre modale lorsque l'utilisateur clique sur le lien Inscription
+        $('#openRegistrationModal').click(function(e) {
+            e.preventDefault(); // Empêcher le comportement de lien par défaut
+            $('#registrationModal').modal('show');
+        });
+
+        // Validation du formulaire et gestion des étapes
+        function validateStep1() {
+            let isValid = true;
+            $('#step1 input[required]').each(function() {
+                if (!this.value.trim()) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+            return isValid;
+        }
+
+        $('#next1').click(function() {
+            if (validateStep1()) {
+                // Gérer la transition entre les étapes du formulaire
+                $('#step1').fadeOut(500, function() {
+                    $('#step2').fadeIn(500).addClass('active');
+                    $(this).removeClass('active');
+                });
+            }
+        });
+
+        $('#prev1').click(function() {
+            $('#step2').fadeOut(500, function() {
+                $('#step1').fadeIn(500).addClass('active');
+                $(this).removeClass('active');
+            });
+        });
+    });
+    $(document).ready(function() {
+        function togglePrestataireFields() {
+            if ($('#user_type').val() === 'prestataire') {
+                $('#prestataire_fields').slideDown();
+            } else {
+                $('#prestataire_fields').slideUp();
+            }
+        }
+
+        togglePrestataireFields();
+
+        $('#user_type').change(function() {
+            togglePrestataireFields();
+        });
+    });
+</script>
+
+

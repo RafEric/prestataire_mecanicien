@@ -1,0 +1,107 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/formulaire.css' %}"> 
+{% endblock %}
+
+{% block content %}
+{% for message in messages %}
+    <strong><i style="color: green;">{{message}}</i></strong>
+{% endfor %} 
+
+<h2 class="text-center mb-4">Register Here</h2><br>
+
+<div class="card p-4" style="max-width: 500px; width: 100%;">
+    <h2 class="text-center mb-4">Inscription</h2>
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Nom d'utilisateur</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="first_name" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="last_name" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+            <label class="form-label">Sexe</label>
+    <div class="d-flex align-items-center">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="male" name="sexe" value="M">
+            <label class="form-check-label" for="male">Masculin</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="female" name="sexe" value="F">
+            <label class="form-check-label" for="female">Féminin</label>
+        </div>
+    </div>
+    <div class="mb-3">
+                                <label for="photo" class="form-label">Photo</label>
+                                <input type="file" class="form-control" id="photo" name="photo" required>
+                            </div>
+        <div class="mb-3">
+            <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+        </div>
+        <div class="mb-3">
+            <label for="user_type" class="form-label">Type d'utilisateur</label>
+            <select class="form-control" id="user_type" name="user_type" required>
+                <option value="client">Client</option>
+                <option value="prestataire">Prestataire</option>
+            </select>
+        </div>
+        <div id="prestataire_fields" style="display: none;">
+            <div class="mb-3">
+                <label for="service" class="form-label">Service</label>
+                <select class="form-control" id="service" name="service">
+                    <option value="diagnostique">Diagnostique</option>
+                    <option value="reparation_general">Réparation générale</option>
+                    <option value="entretien_regulier">Entretien régulier</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="speciality" class="form-label">Spécialité</label>
+                <select class="form-control" id="speciality" name="speciality">
+                    <option value="diesel">Diesel</option>
+                    <option value="essence">Essence</option>
+                    <option value="both">Les deux</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mt-3">S'inscrire</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        function togglePrestataireFields() {
+            if ($('#user_type').val() === 'prestataire') {
+                $('#prestataire_fields').slideDown();
+            } else {
+                $('#prestataire_fields').slideUp();
+            }
+        }
+
+        togglePrestataireFields();
+
+        $('#user_type').change(function() {
+            togglePrestataireFields();
+        });
+    });
+</script>
+
+{% endblock %}

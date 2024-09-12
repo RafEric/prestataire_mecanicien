@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for message in messages %}
+    <strong><i style="color: green;">{{ message }}</i></strong>
+{% endfor %} 
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/formulaire.css' %}">
+
+<style>
+    .form-page {
+        display: flex;
+        flex-direction: row;
+        height: 80vh; /* Ajustez selon les besoins */
+        overflow: hidden;
+    }
+    .form-image {
+        position: relative;
+        flex: 3;
+        background: url("{% static 'imageS/re.png' %}") no-repeat center center;
+        background-size: cover;
+        height: 100%;
+        min-height: 300px; /* Ajustez selon les besoins */
+        max-width: 50%;
+        width: auto;
+        overflow: hidden;
+    }
+    .form-content {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+    }
+    .step {
+        display: none;
+    }
+    .step.active {
+        display: block;
+    }
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 0.5s;
+    }
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
+    }
+    /* photo profil */
+    .photo-upload {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .upload-icon {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #f1f1f1;
+        border: 1px solid #ddd;
+    }
+    .upload-icon i {
+        font-size: 24px;
+        color: #555;
+    }
+    .upload-icon input[type="file"] {
+        display: none;
+    }
+    @media (max-width: 768px) {
+        .form-page {
+            flex-direction: column;
+        }
+        .form-image {
+            height: 200px; /* Ajustez selon les besoins */
+            background-size: cover; /* S'assure que l'image couvre la zone */
+        }
+    }
+    @media (max-width: 576px) {
+        .form-image {
+            display: none;
+        }
+    }
+</style>
+
+<div class="form-page card mt-2">
+    <div class="form-image"></div>
+    <div class="form-content">
+        <h5>Inscription</h5>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'authentification:signup' %}" novalidate>
+            {% csrf_token %}
+            
+            <!-- Étape 1 -->
+            <div class="step active" id="step1">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nom d'utilisateur</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="first_name" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="last_name" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="phone" class="form-label">Numéro de téléphone</label>
+                        <input type="tel" class="form-control" id="phone" name="telephone" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Sexe</label>
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="male" name="sexe" value="M" required>
+                                <label class="form-check-label" for="male">Masculin</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" id="female" name="sexe" value="F">
+                                <label class="form-check-label" for="female">Féminin</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Photo</label>
+                    <input type="file" class="form-control" id="photo" name="photo" required>
+                </div>
+                <button type="button" class="btn btn-primary w-100" id="next1">Suivant</button>
+            </div>
+            
+            <!-- Étape 2 -->
+            <div class="step" id="step2">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirmer le mot de passe</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                </div>
+                <button type="button" class="btn btn-secondary w-100 mt-3" id="prev1">Précédent</button>
+                <button type="button" class="btn btn-primary w-100 mt-3" id="next2">Suivant</button>
+            </div>
+            
+            <!-- Étape 3 -->
+            <div class="step" id="step3">
+                <div class="mb-3">
+                    <label for="user_type" class="form-label">Type d'utilisateur</label>
+                    <select class="form-control" id="user_type" name="user_type" required>
+                        <option value="client">Client</option>
+                        <option value="prestataire">Prestataire</option>
+                    </select>
+                </div>
+                <div id="prestataire_fields" style="display: none;">
+                    <div class="mb-3">
+                        <label for="service" class="form-label">Service</label>
+                        <select class="form-control" id="service" name="service">
+                            <option value="diagnostique">Diagnostique</option>
+                            <option value="reparation_general">Réparation générale</option>
+                            <option value="entretien_regulier">Entretien régulier</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="speciality" class="form-label">Spécialité</label>
+                        <select class="form-control" id="speciality" name="speciality">
+                            <option value="diesel">Diesel</option>
+                            <option value="essence">Essence</option>
+                            <option value="both">Les deux</option>
+                        </select>
+                    </div>
+                    <!-- Champs pour géolocalisation et disponibilité -->
+                    <div class="mb-3">
+                        <label for="lat" class="form-label">Latitude</label>
+                        <input type="hidden" id="latitude" name="latitude">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lng" class="form-label">Longitude</label>
+                        <input type="hidden" id="longitude" name="longitude">
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="is_available" name="is_available">
+                            <label class="form-check-label" for="is_available">
+                                Disponible
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-secondary w-100 mt-3" id="prev2">Précédent</button>
+                <button type="submit" class="btn btn-primary w-100 mt-3">S'inscrire</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        document.getElementById('longitude').value = position.coords.longitude;
+        document.getElementById('latitude').value = position.coords.latitude;
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
+    
+    window.onload = getLocation;
+</script>
+{% endblock %}
