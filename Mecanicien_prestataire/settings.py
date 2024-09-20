@@ -18,6 +18,7 @@ import os
 import django
 from django.utils.encoding import force_str
 django.utils.encoding.force_text = force_str
+
 ADMIN_EMAIL = 'santatrarafanomezantsoa20@gmail.com'
 
 EMAIL_USE_TLS = EMAIL_USE_TLS
@@ -33,7 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xd2k=8&$!syz@v06l+q9xu+skx3$01bydkqs*+e282x%9!a*_a'
+SECRET_KEY = 'mx0E3JGGMEdP5V8H3wPd936JQuKp85mv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,8 +43,7 @@ ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = ['https://prestatairemecanicien.up.railway.app']
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+
 
 # Application definition
 
@@ -105,7 +105,9 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
+DATABASE_URL = os.getenv('postgresql://mecanicien_user:mx0E3JGGMEdP5V8H3wPd936JQuKp85mv@dpg-crmu8sl6l47c73fui5p0-a.oregon-postgres.render.com/mecanicien')
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.parse(DATABASE_URL)
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
