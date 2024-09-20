@@ -1,0 +1,26 @@
+/*.card {
+    transition: transform 0.2s;
+    animation: swing 2s infinite; /* Animation de va-et-vient 
+}
+
+@keyframes swing {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(5deg);
+    }
+    75% {
+        transform: rotate(-5deg);
+    }
+}
+*/
+.row .favoriCard{
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+.favori {
+    background: #fff;
+}

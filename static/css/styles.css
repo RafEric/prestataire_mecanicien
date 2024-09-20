@@ -1,92 +1,63 @@
 
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f3f4 !important;
+}
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: rgb(223, 224, 226);
-        }
-.navbar {
-      background-color: #2C3E50;
-      padding: 1rem;
-    }
-    .navbar-brand {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #f39c12;
-    }
-    .navbar-nav .nav-link {
-      color: #ecf0f1;
-      font-size: 1.1rem;
-      margin-right: 1rem;
-    }
-    .navbar-nav .nav-link:hover {
-      color: #f39c12;
-    }
-    .navbar-toggler-icon {
-      color: #ecf0f1;
-    }
-    .profile-icon {
-      font-size: 1.2rem;
-    }
-    .btn-logout {
-      background-color: #e74c3c;
-      color: white;
-    }
-    .btn-logout:hover {
-      background-color: #c0392b;
-    }
-
+  
 .hero {
-            background-image: url('../imageS/header.png');
-            
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-            animation: fadeIn 2s;
-        }
-        .service-card, .profile-card {
-            margin: 20px 0;
-            animation: slideIn 1.5s;
-        }
-        .testimonial {
-            background: #f8f9fa;
-            padding: 40px;
-            border-radius: 10px;
-            margin: 20px 0;
-            animation: fadeInUp 1.5s;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        @keyframes fadeInUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        .btn-choice {
-            margin-top: 20px;
-        }
-        .profile-card {
-    transition: transform 0.3s;
+    background-image: url('../imageS/header.png');
+    
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    animation: fadeIn 2s;
+}
+
+.service-card, .profile-card {
+    margin: 20px 0;
+    animation: slideIn 1.5s;
+}
+.testimonial {
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 10px;
+    margin: 20px 0;
+    animation: fadeInUp 1.5s;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.btn-choice {
+    margin-top: 20px;
+}
+.profile-card {
+transition: transform 0.3s;
 }
 
 /*.profile-card:hover {

@@ -1,0 +1,41 @@
+    
+    .navbar {
+      background-color: #2C3E50;
+      padding: 1rem;
+      height: 70px;
+    }
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #f39c12;
+    }
+    .navbar-nav .nav-link {
+      color: #ecf0f1;
+      font-size: 1.1rem;
+      margin-right: 1rem;
+    }
+    .navbar-nav .nav-link:hover {
+      color: #f39c12;
+    }
+    .navbar-toggler-icon {
+      color: #ecf0f1;
+    }
+    .profile-icon {
+      font-size: 1.2rem;
+    }
+    .btn-logout {
+      background-color: #e74c3c;
+      color: white;
+    }
+    .btn-logout:hover {
+      background-color: #c0392b;
+    }
+    .navbar-nav .btn-login {
+        background-color: #ff6600;
+        border-color: #ff6600;
+        color: white;
+      }
+    .btn-login:hover {
+        background-color: #e65500;
+        border-color: #e65500;
+      }
