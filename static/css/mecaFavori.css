@@ -51,7 +51,8 @@
     .mechanic-name {
         font-size: 1rem; /* Taille de police sur petit écran */
     }
-    .card-body {
+    .bodyFavori {
        height: 100px;
     }
+   
 }
