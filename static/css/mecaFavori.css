@@ -22,5 +22,36 @@
     position: relative;
 }
 .favori {
-    background: #fff;
+    background: #f3f6f7;
+}
+#favoris-container {
+    scroll-snap-type: x mandatory; /* Active le défilement par section */
+}
+
+.card {
+    scroll-snap-align: start; /* Aligne chaque carte au début de la vue */
+}
+
+.img-profile {
+    width: 100px; /* Taille par défaut de l'image */
+    height: 100px; /* Taille par défaut de l'image */
+}
+
+.mechanic-name {
+    font-size: 1.25rem; /* Taille de police par défaut */
+}
+
+/* Réduction pour les petits écrans */
+@media (max-width: 576px) {
+    .img-profile {
+        width: 60px; /* Taille de l'image sur petit écran */
+        height: 60px; /* Taille de l'image sur petit écran */
+    }
+
+    .mechanic-name {
+        font-size: 1rem; /* Taille de police sur petit écran */
+    }
+    .card-body {
+       height: 100px;
+    }
 }
