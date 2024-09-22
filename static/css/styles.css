@@ -240,3 +240,9 @@ transition: transform 0.3s;
     background: #2c3e50 !important;
     text-align: center;
 }
+.containePhone h1{
+    color: #14314a;
+}
+.containePhone p{
+    color: #14314a;
+}
