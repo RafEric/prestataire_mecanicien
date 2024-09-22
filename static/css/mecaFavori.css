@@ -54,5 +54,19 @@
     .bodyFavori {
        height: 100px;
     }
-   
+    .containePhone{
+        height: 150px !important;
+        
+    }
+    .hero{
+        background-size: contain; /* Ajuste l'image pour qu'elle s'adapte à l'écran */
+        padding: 50px 0; /* Ajuste la marge interne si nécessaire */
+        background-position: center; /* Centre l'image */
+    }
+    .hero h1 {
+        font-size: 1.9rem; /* Réduit la taille du titre */
+    }
+    .hero p {
+        font-size: 1rem; /* Réduit la taille du titre */
+    }
 }
