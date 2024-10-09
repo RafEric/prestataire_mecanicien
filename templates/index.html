@@ -10,6 +10,7 @@
 </section>
 <div class="container favori mt-5">
     <h2 class="text-center">Mécaniciens Favoris</h2>
+    <hr class="styled-line">
     <div class="row">
         <div class="col-12">
             <div class="d-flex overflow-auto" id="favoris-container">
@@ -29,6 +30,8 @@
                     <div class="card-body">
                         <h5 class="card-title text-center mechanic-name">Nom du Mécanicien 2</h5>
                         <a href="#" class="btn btn-primary w-100">Voir le Profil</a>
+                        
+
                     </div>
                 </div>
                 <div class="card mx-2 favoriCard" style="min-width: 150px; max-width: 200px;">
@@ -61,6 +64,7 @@
             </div>
         </div>
     </div>
+    <hr class="styled-line">
 </div>
 
 <!-- Search Section -->
@@ -82,12 +86,13 @@
     
     
     <div class="row gy-4">
+        {% for prestataire in mecanicien%}
         <div class="col-md-4">
             <div class="profile-card">
                 <div class="card">
                     <div class="profile-info">
                         <div class="profile-img">
-                            <img src="{{ prestataire.photo_profil.url}}" class="rounded-circle img-fluid" alt="Mécanicien 1">
+                            <img src="{% static 'imageS/register.png' %}" class="rounded-circle img-fluid" alt="Mécanicien 1">
                         </div>
                         <div class="profile-name">
                             <h5>{{ prestataire.user.first_name}} {{ prestataire.user.last_name}}</h5>
@@ -102,58 +107,14 @@
                         <p><strong>Spécialité:</strong> {{ prestataire.speciality}}</p>
                         <p><strong>Tarifs:</strong> À partir de 50€/heure</p>
                         <a href="#" class="btn btn-primary btn-sm d-block mx-auto">Voir Profil</a>
+                        <a href="{% url 'messaging:message_thread' prestataire.user.username %}">Discuter</a>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="profile-card">
-                <div class="card">
-                    <div class="profile-info">
-                        <div class="profile-img">
-                            <img src="{{ prestataire.photo_profil.url}}" class="rounded-circle img-fluid" alt="Mécanicien 1">
-                        </div>
-                        <div class="profile-name">
-                            <h5>{{ prestataire.user.first_name}} {{ prestataire.user.last_name}}</h5>
-                            <p class="online-status">En ligne</p>
-                        </div>
-                        
-                    </div>
-                    <div class="custom-line"></div>
-                    <div class="card-body">
-                        <p><strong>Adresse:</strong> 123 Rue de la Réparation, Ville</p>
-                        <p><strong>Téléphone:</strong>{{ prestataire.telephone}}</p>
-                        <p><strong>Spécialité:</strong> {{ prestataire.speciality}}</p>
-                        <p><strong>Tarifs:</strong> À partir de 50€/heure</p>
-                        <a href="#" class="btn btn-primary btn-sm d-block mx-auto">Voir Profil</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="profile-card">
-                <div class="card">
-                    <div class="profile-info">
-                        <div class="profile-img">
-                            <img src="{{ prestataire.photo_profil.url}}" class="rounded-circle img-fluid" alt="Mécanicien 1">
-                        </div>
-                        <div class="profile-name">
-                            <h5>{{ prestataire.user.first_name}} {{ prestataire.user.last_name}}</h5>
-                            <p class="online-status">En ligne</p>
-                        </div>
-                        
-                    </div>
-                    <div class="custom-line"></div>
-                    <div class="card-body">
-                        <p><strong>Adresse:</strong> 123 Rue de la Réparation, Ville</p>
-                        <p><strong>Téléphone:</strong>{{ prestataire.telephone}}</p>
-                        <p><strong>Spécialité:</strong> {{ prestataire.speciality}}</p>
-                        <p><strong>Tarifs:</strong> À partir de 50€/heure</p>
-                        <a href="#" class="btn btn-primary btn-sm d-block mx-auto">Voir Profil</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+        
          
         <!-- Ajoutez d'autres profils de mécaniciens ici -->
     </div>

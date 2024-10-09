@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentification',
     'prestataire',
-    'client'
+    'client',
+    'message'
 ]
 
 MIDDLEWARE = [
@@ -98,7 +99,7 @@ WSGI_APPLICATION = 'Mecanicien_prestataire.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'authentification',
+        'NAME': 'prestataire_mecanicien',
         'USER': 'postgres',
         'PASSWORD': 'santatra-18',
         'HOST': 'localhost',
@@ -142,6 +143,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# settings.py
+LOGIN_URL = '/authentification/signin'  # Changez cela pour correspondre à votre configuration
 
 STATIC_URL = 'static/'
 

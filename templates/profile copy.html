@@ -1,9 +1,0 @@
-<!-- profile.html -->
-{% extends "base.html" %}
-
-{% block content %}
-  <h2>Bienvenue, {{ profile.user.first_name }}</h2>
-  {% if profile.approval_message %}
-    <p style="color: green;">{{ profile.approval_message }}</p>
-  {% endif %}
-{% endblock %}

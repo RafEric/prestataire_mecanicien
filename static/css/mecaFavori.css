@@ -70,3 +70,11 @@
         font-size: 1rem; /* Réduit la taille du titre */
     }
 }
+
+.styled-line {
+    border: none;
+    height: 6px !important; /* Épaisseur de la ligne */
+    background-color: #b8bcc6; /* Couleur de la ligne */
+    margin: 10px 0; /* Espacement autour de la ligne */
+    width: 100%; /* Largeur de la ligne */
+}

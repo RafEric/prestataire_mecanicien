@@ -1,0 +1,17 @@
+<!-- messaging/templates/messaging/message_thread.html -->
+<h2>Conversation avec {{ recipient.username }}</h2>
+
+<div>
+    {% for message in messages %}
+        <div>
+            <strong>{{ message.sender.username }}</strong>: {{ message.content }}
+            <span>{{ message.timestamp }}</span>
+        </div>
+    {% endfor %}
+</div>
+
+<form method="POST">
+    {% csrf_token %}
+    <textarea name="content" required></textarea>
+    <button type="submit">Envoyer</button>
+</form>

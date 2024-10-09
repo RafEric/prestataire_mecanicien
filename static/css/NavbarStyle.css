@@ -1,6 +1,6 @@
     
     .navbar {
-      background-color: #2C3E50;
+      background-color: #2C3E50 !important;
       padding: 1rem;
       height: 70px;
     }

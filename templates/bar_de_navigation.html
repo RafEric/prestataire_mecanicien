@@ -36,10 +36,12 @@
                         <li><a href="">Mon Tableau de Bord</a></li>
                     {% endif %}
                         <a class="btn btn-logout"  href="" >deconnecter</a>
+                    
                     {% else %}
-                        <a class="btn btn-outline-light"  href=""  >inscription</a>
+                        <a class="btn btn-outline-light"  href="{% url 'authentification:signup'%}"  >inscription</a>
                         
-                        <a class="btn btn-login"   href="" >Connexion</a>
+                        <a class="btn btn-login"   href="{% url 'authentification:signin'%}" >Connexion</a>
+                    
                 {% endif %}
                 
             </ul>

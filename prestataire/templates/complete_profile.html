@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compléter votre profil de mécanicien</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 50px auto;
+        }
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .upload-photo {
+            display: none;
+        }
+        .custom-file-label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h3 class="text-center">Compléter votre profil de mécanicien</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Photo de profil -->
+                <div class="text-center mb-4">
+                    <img id="profilePreview" src="{% if profile.photo_profil %}{{ profile.photo_profil.url }}{% else %}/static/photos_profil/defaultProfil.jpg{% endif %}" class="profile-photo mb-2" alt="Photo de profil">
+                    <label for="photoInput" class="btn btn-primary btn-sm">Changer la photo de profil</label>
+                    <input type="file" name="photo_profil" id="photoInput" class="upload-photo" accept="image/*">
+                </div>
+
+                <!-- Téléphone -->
+                <div class="mb-3">
+                    <label for="telephone" class="form-label">Téléphone</label>
+                    <input type="text" class="form-control" id="telephone" name="telephone" value="{{ profile.telephone }}" required>
+                </div>
+
+                <!-- Sexe -->
+                <div class="mb-3">
+                    <label for="sexe" class="form-label">Sexe</label>
+                    <select class="form-select" id="sexe" name="sexe" required>
+                        <option value="M" {% if profile.sexe == 'M' %}selected{% endif %}>Masculin</option>
+                        <option value="F" {% if profile.sexe == 'F' %}selected{% endif %}>Féminin</option>
+                    </select>
+                </div>
+
+                <!-- Service proposé -->
+                <div class="mb-3">
+                    <label for="service" class="form-label">Service proposé</label>
+                    <select class="form-select" id="service" name="service" required>
+                        <option value="diagnostique" {% if profile.service == 'diagnostique' %}selected{% endif %}>Diagnostique</option>
+                        <option value="reparation_general" {% if profile.service == 'reparation_general' %}selected{% endif %}>Réparation générale</option>
+                        <option value="entretien_regulier" {% if profile.service == 'entretien_regulier' %}selected{% endif %}>Entretien régulier</option>
+                    </select>
+                </div>
+
+                <!-- Spécialité -->
+                <div class="mb-3">
+                    <label for="speciality" class="form-label">Spécialité</label>
+                    <select class="form-select" id="speciality" name="speciality" required>
+                        <option value="diesel" {% if profile.speciality == 'diesel' %}selected{% endif %}>Diesel</option>
+                        <option value="essence" {% if profile.speciality == 'essence' %}selected{% endif %}>Essence</option>
+                        <option value="both" {% if profile.speciality == 'both' %}selected{% endif %}>Les deux</option>
+                    </select>
+                </div>
+
+                <!-- Géolocalisation -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="latitude" class="form-label">Latitude</label>
+                        <input type="text" class="form-control" id="latitude" name="latitude" value="{{ profile.latitude }}" placeholder="Ex : 48.8566" >
+                    </div>
+                    <div class="col">
+                        <label for="longitude" class="form-label">Longitude</label>
+                        <input type="text" class="form-control" id="longitude" name="longitude" value="{{ profile.longitude }}" placeholder="Ex : 2.3522" >
+                    </div>
+                </div>
+
+                <!-- Bouton de soumission -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Compléter le profil</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("photoInput").addEventListener("change", function() {
+            const [file] = this.files;
+            if (file) {
+                document.getElementById("profilePreview").src = URL.createObjectURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
