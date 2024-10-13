@@ -37,9 +37,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'Mecanicien_prestataire.wsgi.application'
 
 
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'prestataire_mecanicien',
@@ -104,10 +104,12 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
+}"""
+DATABASES = {
+    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 
-
-DATABASE_URL = config("DATABASE_URL", default="postgresql://prestataire_mecanicien_user:nAalvOyI5JzGKrsu8iSNAr4AGQFyZZ3a@dpg-cs32gn9u0jms7392utcg-a.oregon-postgres.render.com:5432/prestataire_mecanicien")
+#DATABASE_URL = config("DATABASE_URL", default="postgresql://prestataire_mecanicien_user:nAalvOyI5JzGKrsu8iSNAr4AGQFyZZ3a@dpg-cs32gn9u0jms7392utcg-a.oregon-postgres.render.com:5432/prestataire_mecanicien")
 
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
