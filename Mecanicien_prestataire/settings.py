@@ -34,14 +34,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mx0E3JGGMEdP5V8H3wPd936JQuKp85mv'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
-CSRF_TRUSTED_ORIGINS = ['https://prestatairemecanicien.up.railway.app']
 
 
 
@@ -106,10 +105,10 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-DATABASE_URL = os.getenv('postgresql://mecanicien_user:mx0E3JGGMEdP5V8H3wPd936JQuKp85mv@dpg-crmu8sl6l47c73fui5p0-a.oregon-postgres.render.com/mecanicien')
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.parse(DATABASE_URL)
-# Password validation
+
+
+DATABASE_URL = config("DATABASE_URL", default="postgresql://prestataire_mecanicien_user:nAalvOyI5JzGKrsu8iSNAr4AGQFyZZ3a@dpg-cs32gn9u0jms7392utcg-a.oregon-postgres.render.com:5432/prestataire_mecanicien")
+
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
