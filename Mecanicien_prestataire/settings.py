@@ -105,7 +105,7 @@ ASGI_APPLICATION = 'Mecanicien_prestataire.asgi.application'
 
 
 
-DATABASES = {
+"""DATABASES = {
    'default': {
         'ENGINE': 'django.db.backends.postgresql',
        'NAME': 'prestataire_mecanicien',
@@ -115,9 +115,13 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-"""DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
-}"""
+"""
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
+}
+
 
 #DATABASE_URL = config("DATABASE_URL", default="postgresql://prestataire_mecanicien_user:nAalvOyI5JzGKrsu8iSNAr4AGQFyZZ3a@dpg-cs32gn9u0jms7392utcg-a.oregon-postgres.render.com:5432/prestataire_mecanicien")
 
