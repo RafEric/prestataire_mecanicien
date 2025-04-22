@@ -1,0 +1,18 @@
+<div class="chat-popup" id="chatPopup">
+    <div class="chat-header">Conversations</div>
+    <div class="list-group list-group-flush">
+        {% for data in conversation_participants %}
+        <a href="{% url 'chat:conversation_detail' data.conversation.id %}" class="list-group-item list-group-item-action d-flex align-items-center conversation-card">
+            <img src="{{ data.photo_profil_url }}" alt="{{ data.participant.username }}" class="profile-img me-2">
+            <div>
+                <strong>{{ data.participant.username }}</strong>
+                <p class="last-message mb-0">{{ data.conversation.last_message.content|default:"Aucun message" }}</p>
+            </div>
+        </a>
+        {% empty %}
+        <div class="text-center py-3">
+            <p class="mb-0 text-muted">Aucune conversation trouvée.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>

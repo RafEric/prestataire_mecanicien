@@ -26,8 +26,8 @@ urlpatterns = [
     path('authentification/', include('authentification.urls')),
     path('client/', include('client.urls')),  # Inclure les URLs de l'application Client
     path('prestataire/', include('prestataire.urls')),  # Inclure les URLs de l'application Prestataire
-     path('api/', include('message.urls')),
     
+   path('message/', include('message.urls', namespace='chat')),
    # path('mecaniciens_proches/', mecaniciens_proches, name='mecaniciens_proches'),
    # path('authentification/', include('authentification.urls')),
    # path('admin_app/', include('admin_app.urls')),

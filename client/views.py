@@ -53,5 +53,5 @@ def dashboard(request):
 
    
 
-    return render(request, 'dashboard.html')
+    return render(request, 'dashboardClient.html')
     

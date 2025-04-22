@@ -1,0 +1,39 @@
+<h1>Messages</h1>
+<div id="message-list">
+    {% for message in messages %}
+        <p>
+            <strong>{{ message.sender.username }}</strong> :
+            {{ message.content }}
+        </p>
+    {% endfor %}
+</div>
+<form id="send-message-form">
+    {% csrf_token %}
+    <input type="hidden" name="conversation_id" value="{{ conversation.id }}">
+    <textarea name="content" placeholder="Écrivez votre message..."></textarea>
+    <button type="submit">Envoyer</button>
+</form>
+
+<script>
+    const form = document.getElementById('send-message-form');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+
+        fetch("{% url 'chat:send_message' %}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                const messageList = document.getElementById('message-list');
+                messageList.innerHTML += `<p><strong>${data.sender}</strong>: ${data.content}</p>`;
+                form.querySelector('textarea').value = '';
+            }
+        });
+    });
+</script>

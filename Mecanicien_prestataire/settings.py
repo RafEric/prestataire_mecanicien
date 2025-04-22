@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'authentification',
     'prestataire',
     'client',
-    'message'
+    'message',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -93,21 +94,30 @@ WSGI_APPLICATION = 'Mecanicien_prestataire.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# settings.py
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",  # Pour le développement; pour production, utilisez Redis.
+    },
+}
+
+ASGI_APPLICATION = 'Mecanicien_prestataire.asgi.application'
 
 
-"""DATABASES = {
-    'default': {
+
+DATABASES = {
+   'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'prestataire_mecanicien',
-        'USER': 'postgres',
-        'PASSWORD': 'santatra-18',
-        'HOST': 'localhost',
+       'NAME': 'prestataire_mecanicien',
+       'USER': 'postgres',
+       'PASSWORD': 'santatra-18',
+       'HOST': 'localhost',
         'PORT': '5432',
     }
-}"""
-DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
+"""DATABASES = {
+    'default': dj_database_url.parse(config('DATABASE_URL'))
+}"""
 
 #DATABASE_URL = config("DATABASE_URL", default="postgresql://prestataire_mecanicien_user:nAalvOyI5JzGKrsu8iSNAr4AGQFyZZ3a@dpg-cs32gn9u0jms7392utcg-a.oregon-postgres.render.com:5432/prestataire_mecanicien")
 

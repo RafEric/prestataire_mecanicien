@@ -1,1 +1,185 @@
-<p>voici mon dashboard pour Client</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Mécanicien</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand, .navbar-nav .nav-link {
+            color: #fff;
+            transition: color 0.3s;
+        }
+
+        .navbar-brand:hover, .navbar-nav .nav-link:hover {
+            color: #ffc107;
+        }
+
+        .hero {
+            background: url('static/images/hero-mecanicien.jpg') no-repeat center center/cover;
+            height: 80vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .services {
+            padding: 50px 0;
+        }
+
+        .service-card {
+            border: none;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .testimonials {
+            background-color: #e9ecef;
+            padding: 50px 0;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Mécanicien</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="#testimonials">Avis</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1 class="display-4">Trouvez le meilleur mécanicien près de chez vous</h1>
+        <p class="lead">Rapide, fiable et à votre service en quelques clics.</p>
+        <a href="#services" class="btn btn-warning btn-lg">Découvrir nos services</a>
+    </div>
+</header>
+
+<section id="services" class="services container">
+    <div class="text-center mb-5">
+        <h2 class="display-5">Nos Services</h2>
+        <p class="lead">Nous offrons une gamme complète de services pour répondre à vos besoins.</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card service-card">
+                <div class="card-body">
+                    <h5 class="card-title">Réparation Générale</h5>
+                    <p class="card-text">Des solutions complètes pour tous vos problèmes mécaniques.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card service-card">
+                <div class="card-body">
+                    <h5 class="card-title">Entretien Régulier</h5>
+                    <p class="card-text">Gardez votre véhicule en parfait état avec nos services d'entretien.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card service-card">
+                <div class="card-body">
+                    <h5 class="card-title">Diagnostique</h5>
+                    <p class="card-text">Identifiez et résolvez les problèmes de votre voiture rapidement.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials" class="testimonials">
+    <div class="container text-center">
+        <h2 class="display-5">Témoignages</h2>
+        <p class="lead">Ce que disent nos clients de nos services.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <blockquote class="blockquote">
+                    <p>"Un service exceptionnel, rapide et efficace !"</p>
+                    <footer class="blockquote-footer">Jean Dupont</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote">
+                    <p>"Des mécaniciens de confiance pour toutes mes réparations."</p>
+                    <footer class="blockquote-footer">Marie Curie</footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4">
+                <blockquote class="blockquote">
+                    <p>"Je recommande vivement leurs services, très satisfaisant."</p>
+                    <footer class="blockquote-footer">Albert Einstein</footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 Mécanicien. Tous droits réservés. <a href="#">Mentions légales</a></p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

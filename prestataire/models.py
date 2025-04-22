@@ -24,5 +24,9 @@ class MecanicienProfile(models.Model):
     is_approved = models.BooleanField(default=False)
     approval_message = models.CharField(max_length=255, blank=True, null=True)
 
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+
     def __str__(self):
         return f"Profil mécanicien de {self.user.username}"
+    

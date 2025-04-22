@@ -9,5 +9,7 @@ class ClientProfile(models.Model):
     adresse = models.CharField(max_length=255, blank=True, null=True)
     photo_profil = models.ImageField(upload_to='static/photos_clients/', default='static/photos_clients/defaultClient.jpg')
 
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
     def __str__(self):
         return f"Profil client de {self.user.username}"

@@ -126,7 +126,8 @@
                     <input type="password" name="confirm_password" id="confirm_password" class="form-control" required placeholder="Confirmez le mot de passe">
                 </div>
             
-            
+                <input type="hidden" name="latitude" id="latitude">
+                <input type="hidden" name="longitude" id="longitude">
             <button type="button" class="btn btn-secondary w-100 mt-3" id="prev1">Précédent</button>
             <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
         </div>
@@ -141,9 +142,14 @@
 <script>
     function getLocation() {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition, showError);
+            navigator.geolocation.getCurrentPosition(function(position) {
+                $("#latitude").val(position.coords.latitude);
+                $("#longitude").val(position.coords.longitude);
+            }, function(error) {
+                alert("Erreur de géolocalisation : " + error.message);
+            });
         } else {
-            alert("Geolocation is not supported by this browser.");
+            alert("Votre navigateur ne prend pas en charge la géolocalisation.");
         }
     }
 

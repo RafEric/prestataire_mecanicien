@@ -1,14 +1,15 @@
 
 {% extends 'base.html' %}
+{% load static %}
 {% block extra_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/formulaire.css'}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/formulaire.css' %}">
 {% endblock %}
 {% block content %}
 {% for message in messages %}
     <strong><i style="color: green;">{{message}}</i></strong>
 {% endfor %}    
 <br><br>
-<h2>Login Here</h2>
+
 <div class="container mt-5">
         <h2>Connexion</h2>
        <form method="post" > 

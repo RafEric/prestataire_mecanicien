@@ -36,6 +36,9 @@
         color: white;
       }
     .btn-login:hover {
-        background-color: #e65500;
+        background-color: #e65500 !important;
         border-color: #e65500;
       }
+    .btn:hover{
+      background-color: #ecf0f1;
+    }

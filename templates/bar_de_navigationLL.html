@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Style Facebook - Mécano</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+    <style>
+        /* Style général pour la navbar */
+        .navbar {
+            background-color: #333; /* Couleur sombre pour rappeler un garage */
+            border-bottom: 2px solid #ff9800; /* Ligne orange pour le thème mécano */
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #ff9800; /* Couleur orange vif */
+            font-weight: bold;
+        }
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ff9800;
+        }
+        .navbar-nav .nav-item .dropdown-menu {
+            background-color: #444; /* Couleur sombre pour le menu déroulant */
+            border: none;
+        }
+        .navbar-nav .nav-item .dropdown-menu .dropdown-item {
+            color: white;
+            transition: background-color 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-item .dropdown-menu .dropdown-item:hover {
+            background-color: #ff9800;
+        }
+        .navbar-toggler {
+            border: none;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28 255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+        .icon-btn {
+            font-size: 1.5rem;
+            color: white;
+            margin: 0 10px;
+            transition: color 0.3s ease-in-out;
+        }
+        .icon-btn:hover {
+            color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container-fluid">
+        <!-- Logo ou titre -->
+        <a class="navbar-brand" href="#"><i class="bi bi-tools"></i> Mécano</a>
+        <!-- Bouton de menu mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Menu principal -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- Section gauche (icônes uniquement) -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}" title="Accueil"><i class="bi bi-house-door"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" title="Services"><i class="bi bi-gear"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" title="À Propos"><i class="bi bi-info-circle"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" title="Contact"><i class="bi bi-envelope"></i></a>
+                </li>
+            </ul>
+            <!-- Section droite (profil et actions) -->
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if user.is_authenticated and user.profile.photo_profil %}
+                            <img src="{{ user.profile.photo_profil.url }}" alt="Photo de Profil" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover; margin-right: 8px;">
+                        {% else %}
+                            <i class="bi bi-person-circle"></i>
+                        {% endif %}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item" href="#">Voir Profil</a></li>
+                        <li><a class="dropdown-item" href="#">Paramètres</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'authentification:signout' %}">Déconnexion</a></li>
+                    </ul>
+                </li>
+                
+                {%  if user.is_authenticated and user.profile and user.profile.user_type == 'client' %}
+                <li><a class= "nav-link" href="{% url 'client:dashboard' %}">Mon Tableau de Bord</a></li> <!-- Remplacez avec le bon nom d'URL -->
+                <li><a class="btn btn-login" href="{% url 'authentification:signout' %}">Déconnecter</a></li>
+            {% else %}
+                <li><a class="btn btn-outline-light" href="{% url 'authentification:signup' %}">Inscription</a></li>
+                <li><a class="btn btn-login" href="{% url 'authentification:signin' %}">Connexion</a></li>
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

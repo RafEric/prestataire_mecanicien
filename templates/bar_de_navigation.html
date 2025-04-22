@@ -31,18 +31,15 @@
                     <li><a class="dropdown-item" href="#">Déconnexion</a></li>
                 </ul>
                 </li>
-                {% if user.is_authenticated%}
-                    {% if request.user.profile.user_type == 'Client' %}
-                        <li><a href="">Mon Tableau de Bord</a></li>
-                    {% endif %}
-                        <a class="btn btn-logout"  href="" >deconnecter</a>
-                    
-                    {% else %}
-                        <a class="btn btn-outline-light"  href="{% url 'authentification:signup'%}"  >inscription</a>
-                        
-                        <a class="btn btn-login"   href="{% url 'authentification:signin'%}" >Connexion</a>
-                    
-                {% endif %}
+                {%  if user.is_authenticated and user.profile and user.profile.user_type == 'client' %}
+                <li><a href="{% url 'client:dashboard' %}">Mon Tableau de Bord</a></li> <!-- Remplacez avec le bon nom d'URL -->
+                <li><a class="btn btn-logout" href="{% url 'authentification:signout' %}">Déconnecter</a></li>
+            {% else %}
+                <li><a class="btn btn-outline-light" href="{% url 'authentification:signup' %}">Inscription</a></li>
+                <li><a class="btn btn-login" href="{% url 'authentification:signin' %}">Connexion</a></li>
+            {% endif %}
+            
+            
                 
             </ul>
             </div>

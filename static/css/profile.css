@@ -1,0 +1,36 @@
+.cover-photo {
+    position: relative;
+    background-color: #f8f9fa; /* Couleur de fond si aucune photo n'est fournie */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profile-photo {
+    transform: translateY(-50%);
+}
+
+.profile-info h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.profile-info p {
+    margin-bottom: 1rem;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+}
+
+.nav-tabs .nav-link {
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+.tab-content .list-group-item {
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
